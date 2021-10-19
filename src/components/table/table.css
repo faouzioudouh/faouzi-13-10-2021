@@ -24,11 +24,16 @@
 
 .graph-line-container {
   position: relative;
+  transform: scale(1);
 }
 
 .table-head th {
   border-top: 2px solid gray;
   border-bottom: 0.5px solid gray;
+}
+
+.table-container {
+  position: relative;
 }
 
 .table-container.green .apply-them-color {
@@ -37,4 +42,22 @@
 
 .table-container.red .apply-them-color {
   color: red;
+}
+
+.graph-line-container::before {
+  background-color: red;
+}
+
+.graph {
+  position: absolute;
+  top: 37px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .table-container.green .graph {
+    top: 0;
+  }
 }

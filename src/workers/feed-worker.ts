@@ -27,11 +27,10 @@ const updateOrRemoveOrderbookLevels = (levels: Level[], patch: Level[]): Level[]
 
 class RealtimeFeed {
   websocket: WebSocket | null = null;
-  updateInterval: number = 500;
+  updateInterval: number = 2000;
   ready: boolean = false;
   currentProductsIds: ProductsIds[] = [];
   rawOrderbook: OrderbookMessage | null = null;
-  currentInterval: number = 0;
   realtimeFeedSource: string = '';
   _queue: string[] = [];
 
@@ -83,6 +82,7 @@ class RealtimeFeed {
       // Snapshot message represents the existing state of the entire orderbook.
       if (validOrderbookMessage.feed === 'book_ui_1_snapshot') {
         this.rawOrderbook = validOrderbookMessage;
+        postMessage({ type: 'ORDERBOOK_UPDATE', data: this.rawOrderbook });
       } else if (validOrderbookMessage.feed === 'book_ui_1' && this.rawOrderbook) {
         const updatedAsks = updateOrRemoveOrderbookLevels(this.rawOrderbook.asks, validOrderbookMessage.asks);
         const updatedBids = updateOrRemoveOrderbookLevels(this.rawOrderbook.bids, validOrderbookMessage.bids);
@@ -135,14 +135,8 @@ class RealtimeFeed {
   };
 
   sendOrderbook = () => {
-    if (this.currentInterval) {
-      clearInterval(this.currentInterval);
-    }
-
-    this.currentInterval = setInterval(() => {
-      if (this.ready) {
-        postMessage({ type: 'ORDERBOOK_UPDATE', data: this.rawOrderbook });
-      }
+    setInterval(() => {
+      postMessage({ type: 'ORDERBOOK_UPDATE', data: this.rawOrderbook });
     }, this.updateInterval) as unknown as number;
   };
 }

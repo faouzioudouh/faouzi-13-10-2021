@@ -21,6 +21,11 @@ export const Table = forwardRef<HTMLTableSectionElement, Props>(
   ({ levelsWithTotals, theme, hideHeader, totalSize }, ref): ReactElement => {
     return (
       <div className={`table-container ${theme}`} ref={ref}>
+        <div className="graph" style={{ height: 1088 }}>
+          {levelsWithTotals.map(([price, size, total]) => (
+            <GraphLine key={price} width={((total * 100) / totalSize) * MULTIPLIER} theme={theme} />
+          ))}
+        </div>
         <table className="table">
           {!hideHeader ? (
             <thead className="table-head">
@@ -34,10 +39,7 @@ export const Table = forwardRef<HTMLTableSectionElement, Props>(
           <tbody>
             {levelsWithTotals.map(([price, size, total]) => (
               <tr key={price} className="graph-line-container">
-                <td className="apply-them-color">
-                  <GraphLine width={((total * 100) / totalSize) * MULTIPLIER} theme={theme} />
-                  {formatPrice(price)}
-                </td>
+                <td className="apply-them-color">{formatPrice(price)}</td>
                 <td>{formatNumber(size)}</td>
                 <td>{formatNumber(total)}</td>
               </tr>

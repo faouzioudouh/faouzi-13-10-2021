@@ -1,4 +1,4 @@
-import type { VFC } from 'react';
+import { memo, VFC } from 'react';
 import { Button } from '../button';
 
 import './inactivity.css';
@@ -7,7 +7,7 @@ interface Props {
   onReconnect: () => void;
 }
 
-export const Inactivity: VFC<Props> = ({ onReconnect }) => {
+export const Inactivity: VFC<Props> = memo(({ onReconnect }) => {
   return (
     <div className="inactivity">
       <p>
@@ -17,4 +17,4 @@ export const Inactivity: VFC<Props> = ({ onReconnect }) => {
       <Button onClick={onReconnect}>Reconnect</Button>
     </div>
   );
-};
+});
