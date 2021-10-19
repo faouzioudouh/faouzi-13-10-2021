@@ -15,7 +15,7 @@ interface Props {
 
 // Adding this multiplies so the graph lines are more visible
 // Tick size is not described in the spec, so it was not implemented.
-const MULTIPLIER = 100;
+const MULTIPLIER = 60;
 
 export const Table = forwardRef<HTMLTableSectionElement, Props>(
   ({ levelsWithTotals, theme, hideHeader, totalSize }, ref): ReactElement => {

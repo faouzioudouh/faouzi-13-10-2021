@@ -8,7 +8,7 @@
     'title   spread' auto
     'ask     bid   ' 1fr
     'footer  footer' auto
-    /50%     50%;
+    / 50% 50%;
 }
 
 .title {
@@ -46,18 +46,26 @@ main {
   grid-area: ask;
 }
 
+.table-container.green .graph-line {
+  transform: rotate(180deg);
+}
+
 @media only screen and (max-width: 768px) {
   .orderbook {
     grid-template:
-    'title   ' auto
-    'bid     ' 1fr
-    'spread  ' auto
-    'ask     ' 1fr
-    'footer  ' auto
-    / 100%;
+      'title   ' auto
+      'bid     ' 1fr
+      'spread  ' auto
+      'ask     ' 1fr
+      'footer  ' auto
+      / 100%;
   }
 
   .spread {
     text-align: center;
+  }
+
+  .table-container.green .graph-line {
+    transform: none;
   }
 }

@@ -57,9 +57,7 @@ export const Orderbook = () => {
   }, [subscribeToFeed, lastProductsIds]);
 
   useEffect(() => {
-    if (currentProductsIds.length === 0) {
-      subscribeToFeed(['PI_XBTUSD']);
-    }
+    subscribeToFeed(['PI_XBTUSD']);
   }, [subscribeToFeed]);
 
   useEffect(() => {
@@ -86,7 +84,7 @@ export const Orderbook = () => {
         </Button>
       </footer>
 
-      {/* {currentProductsIds.length === 0 ? <Inactivity onReconnect={reconnect} /> : null} */}
+      {currentProductsIds.length === 0 ? <Inactivity onReconnect={reconnect} /> : null}
     </div>
   );
 };
