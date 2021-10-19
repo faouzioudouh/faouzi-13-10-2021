@@ -1,0 +1,40 @@
+.table-container {
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  text-align: right;
+  color: white;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.table th {
+  padding: 8px;
+}
+
+.table td {
+  padding: 8px;
+}
+
+.table-head {
+  color: gray;
+}
+
+.graph-line-container {
+  position: relative;
+}
+
+.table-head th {
+  border-top: 2px solid gray;
+  border-bottom: 0.5px solid gray;
+}
+
+.table-container.green .apply-them-color {
+  color: green;
+}
+
+.table-container.red .apply-them-color {
+  color: red;
+}

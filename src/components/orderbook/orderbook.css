@@ -1,0 +1,63 @@
+.orderbook {
+  display: grid;
+  height: 100vh;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+  grid-template:
+    'title   spread' auto
+    'ask     bid   ' 1fr
+    'footer  footer' auto
+    /50%     50%;
+}
+
+.title {
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+  color: white;
+  flex: 1;
+  grid-area: title;
+}
+
+.spread {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+  flex: 1;
+  color: gray;
+  grid-area: spread;
+}
+
+.footer {
+  padding: 20px 0;
+  text-align: center;
+  grid-area: footer;
+}
+
+main {
+  overflow: hidden;
+}
+
+.table-container.red {
+  grid-area: bid;
+}
+
+.table-container.green {
+  grid-area: ask;
+}
+
+@media only screen and (max-width: 768px) {
+  .orderbook {
+    grid-template:
+    'title   ' auto
+    'bid     ' 1fr
+    'spread  ' auto
+    'ask     ' 1fr
+    'footer  ' auto
+    / 100%;
+  }
+
+  .spread {
+    text-align: center;
+  }
+}
