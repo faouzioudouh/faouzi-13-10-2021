@@ -13,7 +13,7 @@ export const useRealtimeFeed = (realtimeFeedSource: string, updateInterval: numb
   const lastProductsIdsRef = useRef<ProductsIds[]>([]);
 
   useEffect(() => {
-    workerRef.current = new Worker(workerPath);
+    workerRef.current = new Worker(workerPath, { type: 'module' });
 
     workerRef.current.onmessage = (event: MessageEvent<SendMessageBody>) => {
       if (event.data.type === 'ORDERBOOK_UPDATE') {
